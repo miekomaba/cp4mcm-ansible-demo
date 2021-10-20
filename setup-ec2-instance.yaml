@@ -1,0 +1,11 @@
+- hosts: all
+  tasks:
+  - name: Fetch package update
+    become: yes
+    command: apt update
+  - name: Refresh package lastet
+    become: yes
+    command: apt upgrade -y
+  - name: Associate a security group
+    become: yes
+    command: aws ec2 modify-instance-attribute --instance-id "{{ ec2-instance-id }}" --groups "{{ security-group-id }}"
